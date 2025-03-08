@@ -6,10 +6,11 @@ const book = document.querySelector("#book");
 const paper1 = document.querySelector("#p1");
 const paper2 = document.querySelector("#p2");
 const paper3 = document.querySelector("#p3");
+const paper4 = document.querySelector("#p4"); // Thêm trang 4
 
 // Business Logic
 let currentLocation = 1;
-let numOfPapers = 3;
+let numOfPapers = 4; // Cập nhật số lượng trang
 let maxLocation = numOfPapers + 1;
 
 function openBook() {
@@ -30,12 +31,19 @@ function goNextPage() {
             case 1:
                 openBook();
                 paper1.classList.add("flipped");
+                paper1.style.zIndex = 1;
                 break;
             case 2:
                 paper2.classList.add("flipped");
+                paper2.style.zIndex = 2;
                 break;
             case 3:
                 paper3.classList.add("flipped");
+                paper3.style.zIndex = 3;
+                break;
+            case 4:
+                paper4.classList.add("flipped");
+                paper4.style.zIndex = 4;
                 closeBook(false);
                 break;
         }
@@ -49,16 +57,20 @@ function goPrevPage() {
             case 2:
                 closeBook(true);
                 paper1.classList.remove("flipped");
-                paper1.style.zIndex = 3; // Đưa trang này lên trên cùng
+                paper1.style.zIndex = 4;
                 break;
             case 3:
                 paper2.classList.remove("flipped");
-                paper2.style.zIndex = 2;
+                paper2.style.zIndex = 3;
                 break;
             case 4:
-                openBook();
                 paper3.classList.remove("flipped");
-                paper3.style.zIndex = 1;
+                paper3.style.zIndex = 2;
+                break;
+            case 5:
+                openBook();
+                paper4.classList.remove("flipped");
+                paper4.style.zIndex = 1;
                 break;
         }
         currentLocation--;
